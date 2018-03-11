@@ -1,0 +1,36 @@
+package:
+    name: nwchem
+    version: 6.8
+
+about:
+    home: http://www.nwchem-sw.org
+    license_file: nwchem-6.8/LICENSE.TXT
+    summary: Open Source High-Performance Computational Chemistry
+
+build:
+  number: 1
+
+source:
+    url: https://github.com/nwchemgit/nwchem/releases/download/v6.8-release/nwchem-6.8-release.revision-v6.8-47-gdf6c956-src.2017-12-14.tar.bz2
+    md5: 6b9188e6d232dd1333cfd96bc441916d
+    folder: nwchem-6.8
+
+requirements:
+    build:
+      - python 2.7*
+      - make
+      - openmpi
+      - gcc
+      - openblas
+    run:
+      - python 2.7*
+      - openmpi
+      - openblas
+
+test:
+    source_files:
+      - nwchem-6.8/QA
+    files:
+      - tests.sh
+    commands:
+      - ./tests.sh
