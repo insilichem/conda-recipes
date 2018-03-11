@@ -16,7 +16,7 @@ source:
     md5: 23e0d2ae6dcfbb1e1ff751c6d331b952                                                                              # [linux]
     fn:  mgltools_x86_64Darwin10_1.5.7.tar.gz                                                                          # [osx]
     url: http://mgltools.scripps.edu/downloads/tars/releases/nightly/1.5.7/REL/mgltools_x86_64Darwin10_1.5.7.tar.gz    # [osx]
-    md5: c515b187cddeec72fe5a81ecb4a92d6b                                                                              # [osx]
+    md5: 2a4ed32b7ed513ccf8fc32b6b018451e                                                                              # [osx]
 
 requirements:
     build:
