@@ -8,7 +8,7 @@ about:
     summary: Open Source High-Performance Computational Chemistry
 
 build:
-  number: 1
+  number: 2
 
 source:
     url: https://github.com/nwchemgit/nwchem/releases/download/v6.8-release/nwchem-6.8-release.revision-v6.8-47-gdf6c956-src.2017-12-14.tar.bz2
@@ -20,12 +20,13 @@ requirements:
       - python 2.7*
       - make
       - openmpi
-      - gcc
       - openblas
+      - gcc
     run:
       - python 2.7*
       - openmpi
       - openblas
+      - libgcc
 
 test:
     source_files:
