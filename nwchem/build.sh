@@ -65,4 +65,23 @@ spce $PREFIX/share/nwchem/data/solvents/spce.rst
 charmm_s $PREFIX/share/nwchem/data/charmm_s/
 charmm_x $PREFIX/share/nwchem/data/charmm_x/
 EOF
+mkdir -p $PREFIX/etc/conda/activate.d/ $PREFIX/etc/conda/deactivate.d/
 
+cat > $PREFIX/etc/conda/activate.d/nwchem_env.sh << "EOF"
+if [ ! -f $HOME/.nwchemrc ]; then
+    ln -s $CONDA_PREFIX/etc/default.nwchemrc $HOME/.nwchemrc
+	touch $HOME/.CONDANWCHEMRC
+fi
+EOF
+cat > $PREFIX/etc/conda/activate.d/nwchem_env.fish << "EOF"
+    bash $CONDA_PREFIX/etc/conda/activate.d/nwchem_env.sh
+EOF
+
+cat > $PREFIX/etc/conda/deactivate.d/nwchem_env.sh << "EOF"
+if [ -f $HOME/.CONDANWCHEMRC ]; then
+    rm $HOME/.CONDANWCHEMRC $HOME/.nwchemrc
+fi
+EOF
+cat > $PREFIX/etc/conda/deactivate.d/nwchem_env.fish << "EOF"
+    bash $CONDA_PREFIX/etc/conda/deactivate.d/nwchem_env.sh
+EOF
