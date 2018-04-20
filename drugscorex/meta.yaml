@@ -1,0 +1,28 @@
+package:
+  name: drugscorex
+  version: 0.90 # [linux]
+  version: 0.88 # [osx]
+
+about:
+  home: http://pc1664.pharmazie.uni-marburg.de/drugscore/
+  license_file: README.txt
+  summary: A Knowledge-Based Scoring Function for the Assessment of Protein–Ligand Complexes
+
+build:
+  number: 0
+
+source:
+  url: http://pc1664.pharmazie.uni-marburg.de/drugscore/dsx/dsx090_and_hotspotsx061_linux.tar.gz # [linux]
+  md5: 5a7016c560e0011a5ce07e6d85c58ce0 # [linux]
+  url: http://pc1664.pharmazie.uni-marburg.de/drugscore/dsx/dsx088_and_hotspotsx060_mac.tar.gz # [osx]
+  md5: 18309ac8bea0003190d05d220bdfd4df # [osx]
+
+requirements:
+  run:
+    - libstdcxx-ng
+    - libgcc-ng
+
+test:
+  commands:
+    - drugscorex -h
+    - hotspotsx -h
