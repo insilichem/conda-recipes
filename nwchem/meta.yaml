@@ -1,36 +1,46 @@
+# Must be built with command:
+# conda build -c conda-forge --croot /tmp --prefix-length 80  --no-copy-test-source-files .
+{% set version = "6.8.1" %}
 package:
     name: nwchem
-    version: 6.8
+    version: {{ version }}
 
 about:
     home: http://www.nwchem-sw.org
-    license_file: nwchem-6.8/LICENSE.TXT
+    license_file: nwchem-{{version}}/LICENSE.TXT
     summary: Open Source High-Performance Computational Chemistry
 
 build:
-  number: 3
+    number: 0
 
 source:
-    url: https://github.com/nwchemgit/nwchem/releases/download/v6.8-release/nwchem-6.8-release.revision-v6.8-47-gdf6c956-src.2017-12-14.tar.bz2
-    md5: 6b9188e6d232dd1333cfd96bc441916d
-    folder: nwchem-6.8
+    url: https://github.com/nwchemgit/nwchem/releases/download/6.8.1-release/nwchem-6.8.1-release.revision-v6.8-133-ge032219-src.2018-06-14.tar.bz2
+    md5: b3a6934ba71f0d31d28efa17c6694fda
+    # url: https://github.com/nwchemgit/nwchem/releases/download/v6.8-release/nwchem-6.8-release.revision-v6.8-47-gdf6c956-src.2017-12-14.tar.bz2
+    # md5: 6b9188e6d232dd1333cfd96bc441916d
+    folder: nwchem-{{ version }}
 
 requirements:
     build:
+      - {{ compiler('c') }}
+      - {{ compiler('fortran') }}
+    host:
       - python 2.7*
       - make
-      - openmpi
-      - openblas
-      - gcc
+      - openmpi 3.1*
+      - openblas 0.3*
+      - lapack 3.6*
+      - scalapack 2.0*
     run:
       - python 2.7*
-      - openmpi
-      - openblas
-      - libgcc
+      - openmpi 3.1*
+      - openblas 0.3*
+      - lapack 3.6*
+      - scalapack 2.0*
 
 test:
     source_files:
-      - nwchem-6.8/QA
+      - nwchem-{{ version }}/QA
     files:
       - tests.sh
     commands:
