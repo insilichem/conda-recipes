@@ -1,0 +1,58 @@
+{% set name = "ProDy" %}
+{% set version = "1.10.8" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 7f7b7a0a7755f5b1cb26aef08388f7c5e1e17e27c742f228cc723cb4a3999f75
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - pip
+    - numpy {{ numpy }}
+  run:
+    - python
+    - {{ pin_compatible('numpy') }}
+    - scipy
+    - pyparsing
+    - biopython
+
+test:
+  imports:
+    - prody
+  commands:
+    - prody -h
+    - evol -h
+  #   - cd docs; nosetests prody -a '!slow'; cd ..
+  # requires:
+  #   - unittest2 # [py27]
+  # source_files:
+  #   - docs
+
+about:
+  home: http://prody.csb.pitt.edu
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.rst
+  summary: 'A Python Package for Protein Dynamics Analysis'
+
+  description: |
+    ProDy is a free and open-source Python package for protein structure,
+    dynamics, and sequence analysis. It allows for comparative analysis
+    and modeling of protein structural dynamics and sequence co-evolution.
+    Fast and flexible ProDy API is for interactive usage as well as application
+    development. ProDy also comes with several analysis applications and a
+    graphical user interface for visual analysis.
+  doc_url: http://prody.csb.pitt.edu/tutorials
+  dev_url: https://github.com/prody/ProDy
