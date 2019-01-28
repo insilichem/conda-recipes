@@ -1,0 +1,41 @@
+{% set name = "PROPKA" %}
+{% set version = "3.1.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/jensengroup/propka-3.1/archive/91925bb92092d3b180a9c086e81822a3fdec6939.tar.gz
+  sha256: 9cfa02c014b34e2f06caffd1e4d1a4d040ddda0b75e12b7cba8551cb9eca251e
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - python
+  run:
+    - python
+
+test:
+  commands:
+    - propka31 --help
+  imports:
+    - propka
+
+about:
+  home: http://propka.org/
+  license: LGPL
+  license_family: LGPL
+  license_file: LICENSE
+  summary: 'pKa predictions for 3D structures'
+
+  description: |
+    PROPKA predicts the pKa values of ionizable groups in proteins (version 3.0)
+    and protein-ligand complexes (version 3.1) based on the 3D structure.
+  doc_url: http://propka.org/
+  dev_url: https://github.com/jensengroup/propka-3.1
+
+
