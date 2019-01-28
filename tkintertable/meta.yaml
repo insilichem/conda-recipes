@@ -1,0 +1,49 @@
+{% set name = "tkintertable" %}
+{% set version = "1.3.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 591b481694fefc4b33a0e7fcda20b7284c93563707f2a733b29be30846a1728d
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - python
+  run:
+    - python
+    - tk
+    {% if version[:3] == "1.3" %}
+    - future
+    {% elif version[:3] in ("1.1", "1.2") %}
+    - pmw
+    {% endif %}
+
+test:
+  commands:
+    - tablesapp --help
+  imports:
+    - tkintertable
+
+about:
+  home: https://github.com/dmnfarrell/tkintertable
+  license: GPL
+  license_family: GPL
+  license_file: LICENSE
+  summary: 'Extendable table class for Tkinter'
+
+  description: |
+    This package allows interactive spreadsheet-style tables
+    to be added into a Tkinter application. Tkinter is the
+    standard GUI toolkit for Python. A sample application
+    using these classes is included in the distribution
+  doc_url: https://github.com/dmnfarrell/tkintertable/wiki
+  dev_url: https://github.com/dmnfarrell/tkintertable
+
+
