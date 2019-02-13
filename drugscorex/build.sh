@@ -16,7 +16,7 @@ ln -s "$PREFIX/bin/$DSX_EXECUTABLE" "$PREFIX/bin/drugscorex"
 ln -s "$PREFIX/bin/$HOTSPOT_EXECUTABLE" "$PREFIX/bin/hotspotsx"
 
 mkdir -p "$PREFIX/share/drugscorex"
-cp -r "pdb_pot_0511/" "$PREFIX/share/drugscorex/"
+cp -r "pdb_pot_0511" "$PREFIX/share/drugscorex"
 
 mkdir -p "$PREFIX/etc/conda/activate.d/" "$PREFIX/etc/conda/deactivate.d/"
 

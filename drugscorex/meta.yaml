@@ -9,7 +9,7 @@ about:
   summary: A Knowledge-Based Scoring Function for the Assessment of Protein–Ligand Complexes
 
 build:
-  number: 0
+  number: 1
 
 source:
   url: http://pc1664.pharmazie.uni-marburg.de/drugscore/dsx/dsx090_and_hotspotsx061_linux.tar.gz # [linux]
@@ -19,8 +19,8 @@ source:
 
 requirements:
   run:
-    - libstdcxx-ng
-    - libgcc-ng
+    - libstdcxx-ng # [linux]
+    - libgcc-ng # [linux]
 
 test:
   commands:
