@@ -1,0 +1,45 @@
+{% set name = "BKChem" %}
+{% set version = "0.14.0rc4" %}
+{% set commits = "73" %}
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://gitlab.com/bkchem/bkchem/-/archive/e664d32c87dda801407cf0f02aa647877bfc49b7/bkchem-e664d32c87dda801407cf0f02aa647877bfc49b7.tar.gz
+  sha256: 5c044e207109a3c14886d98b565b130ccc5375bef68e21db37c363099f787577
+
+build:
+  number: 0
+  string: "py{{ CONDA_PY }}_{{commits}}_{{ PKG_BUILDNUM }}"
+
+requirements:
+  host:
+    - python 2.7.*
+  run:
+    - python 2.7.*
+    - tk
+    - pmw
+    - pycairo
+    - oasa
+
+
+test:
+  commands:
+    - bkchem --help
+  imports:
+    - bkchem
+
+about:
+  home: http://bkchem.zirael.org/
+  license: GPL
+  license_family: GPL
+  license_file: gpl.txt
+  summary: 'BKChem is a free molecular drawing program'
+
+  description: |
+    BKChem is a free molecular drawing program
+  doc_url: http://bkchem.zirael.org/
+  dev_url: https://gitlab.com/bkchem/bkchem
+
+

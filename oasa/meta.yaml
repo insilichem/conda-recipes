@@ -1,0 +1,43 @@
+# Usage: conda build --python=2.7 .
+# (--python needed so the build string is properly constructed)
+{% set name = "OASA" %}
+{% set version = "0.14.0" %}
+{% set commits = "17" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://gitlab.com/oasa/oasa/-/archive/5edba89e47d82116263db86f274c181cb3b0a036/oasa-5edba89e47d82116263db86f274c181cb3b0a036.tar.gz
+  sha256: a028d24ac63a66ae06e251fea0edbb80f06daacaafc7160ac06ba09ce1e7a743
+
+build:
+  number: 0
+  string: "py{{ CONDA_PY }}_{{commits}}_{{ PKG_BUILDNUM }}"
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - python 2.7.*
+  run:
+    - python 2.7.*
+
+test:
+  imports:
+    - oasa
+    - oasa.graph
+
+about:
+  home: http://bkchem.zirael.org/oasa_en.html
+  license: GPL
+  license_family: GPL
+  license_file: gpl.txt
+  summary: 'OASA is a free cheminformatics library written in Python'
+
+  description: |
+    OASA is a free python library for manipulating and analyzing chemical structures
+  doc_url: http://bkchem.zirael.org/oasa_en.html
+  dev_url: https://gitlab.com/oasa/oasa
+
+
