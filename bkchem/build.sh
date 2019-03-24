@@ -4,7 +4,19 @@
 rm -rf $SRC_DIR/bkchem/{Pmw,PmwBlt,PmwColor}.py{,c}
 # Remove oasa from package list
 # and skip the programmatic creationg of site_config (we will do that manually below)
-sed -i '82,$d;/.*oasa.*/d;s/^  version = .*$/  version = '\"${PKG_VERSION}\"',/'  setup.py
+uname_out="$(uname -s)"
+case "$uname_out" in
+  Linux* )
+    sed -i '82,$d;/.*oasa.*/d;s/^  version = .*$/  version = '\"${PKG_VERSION}\"',/'  setup.py
+  ;;
+  Darwin*)
+    sed -i '' '82,$d;/.*oasa.*/d;s/^  version = .*$/  version = '\"${PKG_VERSION}\"',/'  setup.py
+  ;;
+  *)
+    echo "Platform ${uname_out} not supported"
+    exit 1
+  ;;
+esac
 # Download submodules manually
 curl -s https://gitlab.com/bkchem/piddle/-/archive/91ceda9c3d73829cc4ab922ff3877806beaf3a20/piddle-91ceda9c3d73829cc4ab922ff3877806beaf3a20.tar.gz | tar xvz -C bkchem/plugins/piddle --strip-components=1
 curl -s https://gitlab.com/bkchem/bkchem-plugins/-/archive/f2600ac1672f98f93e36d5c382c4a80d47428a19/bkchem-plugins-f2600ac1672f98f93e36d5c382c4a80d47428a19.tar.gz | tar xvz -C plugins --strip-components=1
